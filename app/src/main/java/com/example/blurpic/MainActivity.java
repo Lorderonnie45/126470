@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private Bitmap originalBitmap;
     private int blurLevel = 10;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
