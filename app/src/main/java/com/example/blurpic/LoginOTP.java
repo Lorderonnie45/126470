@@ -148,5 +148,27 @@ public class LoginOTP extends AppCompatActivity {
     }
 
 
+    void startResendTimer() {
+        resendOtpTextView.setEnabled(false);
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        timeoutSeconds--;
+                        resendOtpTextView.setText("Resend OTP in " + timeoutSeconds + " seconds");
+                        if (timeoutSeconds <= 0) {
+                            timeoutSeconds = 60L;
+                            timer.cancel();
+                            resendOtpTextView.setEnabled(true);
+                        }
+                    }
+                });
+            }
+        }, 0, 1000);
+    }
+
 
 }
